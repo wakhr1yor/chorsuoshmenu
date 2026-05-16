@@ -6,9 +6,9 @@
 Frontend (React + TS)              Backend (Express + TS)           Telegram
 ┌─────────────────┐              ┌─────────────────┐              ┌──────────┐
 │  Menu Page      │─────────────▶│  /api/orders    │─────────────▶│  Bot API │
-│  - Taomlar      │              │  - Validation   │              │  Channel │
-│  - Savat        │◀─────────────│  - Format msg   │              └──────────┘
-│  - Checkout     │  Response    │  - Send to TG   │
+│  - Zig'ir Oshi  │              │  - Validation   │              │  Channel │
+│  - Choyxona     │◀─────────────│  - Format msg   │              │ -100395  │
+│  - Savat        │  Response    │  - Send to TG   │              └──────────┘
 └─────────────────┘              └─────────────────┘
      :5173                              :3000
 ```
@@ -22,15 +22,10 @@ Frontend (React + TS)              Backend (Express + TS)           Telegram
 4. Bot username: `chorsuos_menu_bot` (o'zingiznikini yarat)
 5. **Token** olasiz: `8904330500:AAF60JdGDWDjQsq8...`
 
-### B) Channel Yaratish
-1. Telegram'da yangi **Private Channel** yarat
-2. Bot'ni admin qil (`/setprivacy` → Disable)
-3. Channel ID olyish:
-   - Bot'ga `/start` yubor
-   - Channel'ga `@bot_usernamebot /start` yubor
-   - Bot agentini channel'ga add qil
-   - First message yubor
-   - Bot forward qilib ID ko'rsatadi: `-1002345678901`
+### B) Private Channel Yaratish
+1. Telegram'da **Private Channel** yarat
+2. Bot'ni admin qil va message yo'llashga ruxsat ber
+3. Channel ID: `-1003956003008`
 
 ### C) Environment Sozlash
 ```bash
@@ -40,7 +35,7 @@ cp .env.example .env
 Keyin `.env` faylini to'ldiring:
 ```env
 TELEGRAM_BOT_TOKEN=8904330500:AAF60JdGDWDjQsq8-apCT-IFgx9mCXD4D-4
-TELEGRAM_CHANNEL_ID=-1002345678901
+TELEGRAM_CHANNEL_ID=-1003956003008
 CONTACT_PHONE=+998 77 256 0202
 NODE_ENV=development
 PORT=3000
@@ -58,14 +53,14 @@ pnpm install
 
 # 3. Environment o'rnatish
 cp ../../.env.example .env
-# .env'ni to'ldiring (TELEGRAM_BOT_TOKEN, TELEGRAM_CHANNEL_ID)
+# TELEGRAM_BOT_TOKEN va TELEGRAM_CHANNEL_ID'ni to'ldiring
 
 # 4. TypeScript tekshirish
 pnpm run typecheck
 
 # 5. Ishga tushirish
 pnpm run dev
-# Output: Server running on http://localhost:3000
+# Output: 🚀 Server running on http://localhost:3000
 ```
 
 ### Frontend
@@ -91,10 +86,18 @@ pnpm run dev
 {
   "items": [
     {
-      "id": "osh-1",
-      "name": "Osh",
-      "price": 15000,
-      "quantity": 2
+      "id": "zigir-oshi",
+      "name": "Zig'ir Oshi",
+      "price": 37000,
+      "quantity": 1,
+      "portion": "0.7 kg"
+    },
+    {
+      "id": "qazi",
+      "name": "Qazi",
+      "price": 12000,
+      "quantity": 1,
+      "portion": "100g"
     }
   ],
   "customerName": "Ali",
@@ -108,71 +111,93 @@ pnpm run dev
 ```json
 {
   "success": true,
-  "message": "Order created and sent successfully",
+  "message": "Buyurtma muvaffaqiyatli qabul qilindi! Telegram kanaliga yuborildi.",
   "orderId": "ORD-1715851200000",
-  "total": 30000
+  "total": 49000
 }
 ```
 
 #### Response (Error)
 ```json
 {
-  "error": "Missing required fields: items, phone, address"
+  "error": "Phone number is required"
 }
 ```
 
 #### Status Codes
-- `200` - Muvaffaqiyatli
-- `400` - Xato ma'lumot (missing fields)
+- `200` - Muvaffaqiyatli ✅
+- `400` - Xato ma'lumot (validation error)
 - `500` - Server xatosi
+
+### GET /api/orders/health
+**Service health check**
+
+```bash
+curl http://localhost:3000/api/orders/health
+```
+
+Response:
+```json
+{
+  "status": "OK",
+  "service": "orders-api",
+  "timestamp": "2026-05-16T04:50:00.000Z"
+}
+```
 
 ## 5️⃣ Frontend Integratsiyasi
 
-### Cart.tsx Component
+### App.tsx Component
 
-#### Props
 ```typescript
-interface CartProps {
-  items: CartItem[];                      // Savat'dagi taomlar
-  onRemoveItem: (id: string) => void;     // Taomni o'chirish
-  onUpdateQuantity: (id: string, qty: number) => void;  // Miqdorni o'zgartirish
-  onCheckout: () => void;                 // Checkout tugallangandan keyin
-}
-```
-
-#### Ishlatish
-```typescript
+import React, { useState } from 'react';
+import Menu from './components/Menu';
 import Cart from './components/Cart';
 
 export default function App() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleAddToCart = (item, quantity) => {
+    // Savat'ga qo'shish
+  };
 
   return (
-    <Cart
-      items={cartItems}
-      onRemoveItem={(id) => setCartItems(prev => prev.filter(i => i.id !== id))}
-      onUpdateQuantity={(id, qty) => {
-        setCartItems(prev => prev.map(i => 
-          i.id === id ? { ...i, quantity: qty } : i
-        ))
-      }}
-      onCheckout={() => setCartItems([])}
-    />
+    <div className="app">
+      <header>
+        <h1>🍲 Chorsuo's Menu</h1>
+        <button onClick={() => setShowCart(!showCart)}>
+          🛒 Savat ({cartItems.length})
+        </button>
+      </header>
+      <Menu onAddToCart={handleAddToCart} />
+      <Cart items={cartItems} />
+    </div>
   );
 }
 ```
+
+### Menu Component
+- 4 ta taom: Zig'ir Oshi, Choyxona Oshi, Qazi, Bedana Tuxum
+- Har bir taom uchun +/- tugmalari
+- Rasmlar beshqozon.uz va kamolonosh.uz'dan
+
+### Cart Component
+- Savat'dagi taomlar ro'yxati
+- Miqdorni o'zgartirish
+- Checkout forma (Ism, Tel, Manzil, Izoh)
+- Telegram'ga yuborish
 
 ## 6️⃣ Testing
 
 ### Unit Test Example
 ```typescript
-// Test: Buyurtma API'siga xato ma'lumot yuborish
+// Test: Required fields validation
 it('should return 400 for missing phone', async () => {
   const response = await fetch('/api/orders', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      items: [{ id: '1', name: 'Osh', price: 15000, quantity: 1 }],
+      items: [{ id: '1', name: 'Osh', price: 37000, quantity: 1 }],
       customerName: 'Ali',
       address: 'Tashkent',
       // phone missing!
@@ -188,7 +213,7 @@ curl -X POST http://localhost:3000/api/orders \
   -H "Content-Type: application/json" \
   -d '{
     "items": [
-      {"id": "1", "name": "Osh", "price": 15000, "quantity": 1}
+      {"id": "zigir-oshi", "name": "Zig'"'"'ir Oshi", "price": 37000, "quantity": 1, "portion": "0.7 kg"}
     ],
     "customerName": "Test User",
     "phone": "+998 77 256 0202",
@@ -197,41 +222,46 @@ curl -X POST http://localhost:3000/api/orders \
   }'
 ```
 
-### Telegram Bot Testing
-1. Channel'ni oching
-2. Savat'dan taom qo'shing
-3. "Buyurtma Berish" bosing
-4. Formasini to'ldiring
-5. "Tasdiqlash" bosing
-6. ✅ Xabar channel'da ko'rinishi kerak
+### Browser Testing
+1. **Frontend:** http://localhost:5173 oching
+2. **Menu:** Taomlarni ko'rish va +/- tugmalari bilan quantity tanlash
+3. **Cart:** "🛒 Savat" tugmasini bosing
+4. **Checkout:** Formasini to'ldiring va "Tasdiqlash" bosing
+5. **Telegram:** Channel'da xabar ko'rish (`-1003956003008`)
 
 ## 7️⃣ Troubleshooting
 
+### 🔴 "Cannot find module" xatosi
+**Sababi:** Dependencies o'rnatilmagan
+
+**Yechimi:**
+```bash
+pnpm install
+pnpm run typecheck
+```
+
 ### 🔴 "Telegram API Error"
-**Sababi:** Bot token noto'g'ri yoki channel ID xato
+**Sababi:** Bot token yoki channel ID xato
 
 **Yechimi:**
 ```bash
 # 1. Token va channel ID'ni tekshir
 cat .env
 
-# 2. Bot'ni channel'ga add qilganini tekshir
-# 3. Bot admin huquqlariga ega ekanini tekshir
-
-# Test:
+# 2. Bot'ni channel'ga add qil va admin qil
+# 3. Test:
 curl "https://api.telegram.org/bot YOUR_TOKEN/getMe"
-# Response: "ok": true bo'lishi kerak
+# Response: "ok": true
 ```
 
-### 🔴 "CORS Error"
+### 🔴 "CORS Error" - Frontend backend'ga connection qila olmayapti
 **Sababi:** Frontend va backend portlari moslashmagan
 
 **Yechimi:**
 ```typescript
 // artifacts/api-server/src/index.ts
-import cors from 'cors';
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: ['http://localhost:5173', 'http://localhost:3000'],
   credentials: true
 }));
 ```
@@ -240,52 +270,73 @@ app.use(cors({
 **Sababi:** API endpoint mavjud emas yoki network xato
 
 **Yechimi:**
-1. Backend ishga tuShgan-mi? `localhost:3000/api/orders`
-2. Network tab'ni (DevTools) tekshir
+1. Backend ishga tuShgan-mi? `pnpm run dev`
+2. DevTools Network tab'ni tekshir
 3. Console'da xatolarni ko'rish
+4. Backend logs'da error message'larni ko'rish
 
 ### 🔴 "Xabar Telegram'da ko'rinmaydi"
 **Sababi:** Channel ID noto'g'ri yoki bot admin emas
 
 **Yechimi:**
 ```bash
-# Channel ID'ni to'g'ri olish:
-# 1. Bot'ni channel'ga add qil
-# 2. "Hello" xabar yubor
-# 3. curl orqali so'rov yubor:
+# 1. Channel ID'ni to'g'ri olish:
 curl "https://api.telegram.org/bot YOUR_TOKEN/getUpdates"
 
-# Javobda "chat": {"id": -1002345678901} ko'rarsiz
+# Javobda "chat": {"id": -1003956003008} ko'rarsiz
 # Bu to'g'ri channel ID!
+
+# 2. Bot admin-mi tekshirish:
+# Private channel'ga kirip, bot'ni admin qil
 ```
 
-## 📋 Production Deploy
+## 🎯 Menyu
 
-### Heroku
-```bash
-# 1. Heroku app yaratish
-heroku create chorsuos-menu
+### 🍲 Asosiy Taomlar
+| Taom | Narxi | Miqdor | Rasm |
+|------|-------|--------|------|
+| **Zig'ir Oshi** | 37.000 сўм | 0.7 kg | beshqozon.uz |
+| **Choyxona Oshi** | 43.000 сўм | 0.7 kg | kamolonosh.uz |
 
-# 2. Environment variables o'rnatish
-heroku config:set TELEGRAM_BOT_TOKEN=...
-heroku config:set TELEGRAM_CHANNEL_ID=...
+### ➕ Qo'shimchalar
+| Qo'shimcha | Narxi | Miqdor |
+|-----------|-------|--------|
+| **Qazi** | 12.000 сўм | 100g |
+| **Bedana Tuxum** | 2.000 сўм | 1 ta |
 
-# 3. Deploy
-git push heroku main
+## 📋 Telegram Xabar Misol
+
+```
+📦 YANGI BUYURTMA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 Mijoz: Ali
+📞 Telefon: +998 77 256 0202
+📍 Manzil: Tashkent, Fergona 123
+📝 Izoh: Qipiq kodeks: 1234
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BUYURTMALAR:
+• Zig'ir Oshi x1 (0.7 kg) = 37.000 сўм
+• Qazi x1 (100g) = 12.000 сўм
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💰 Jami: 49.000 сўм
+🕐 Vaqt: 2026-05-16, 10:50:00
 ```
 
-### Environment Variables
-```
-TELEGRAM_BOT_TOKEN      ← BotFather'dan oladigan token
-TELEGRAM_CHANNEL_ID     ← Private channel ID
-CONTACT_PHONE          ← Bog'lanish uchun raqam
-NODE_ENV               ← production
-PORT                   ← 3000 (Heroku o'z sozlaydi)
-```
+## 📞 Bog'lanish
 
-## 📞 Qo'shimcha Manziller
+- **Telefon:** +998 77 256 0202
+- **Telegram:** @chorsuos_menu_bot
+- **Channel:** -1003956003008
 
-- **Telegram Bot API Docs:** https://core.telegram.org/bots/api
-- **Express.js Docs:** https://expressjs.com
-- **React Docs:** https://react.dev
-- **Uzbek Telefon Formati:** +998 XX XXX XXXX
+## 🔗 Qo'shimcha Ma'lumotlar
+
+- **Telegram Bot API:** https://core.telegram.org/bots/api
+- **Express.js:** https://expressjs.com
+- **React:** https://react.dev
+- **TypeScript:** https://www.typescriptlang.org
+
+---
+
+✅ **Barcha tayyoq! Ishga tushiring va testlang!**
