@@ -60,3 +60,57 @@ id = "O6VYN3sx36nHSDg6nlMNo"
 uri = "file://artifacts/chorsu/src/assets/gallery-interior.png"
 type = "image"
 title = "Restaurant interior"
+
+[[generated]]
+id = "kuD732Y3ze23XxGa94xkx"
+uri = "file://attached_assets/generated_images/choyxona_style_uzbek_plov_3df5.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "5_7RzTaZKta2ztQQCZdit"
+uri = "file://attached_assets/generated_images/zig_ir_oshi_uzbek_d586.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "YI_Asxo4AMgl6McwCQhnt"
+uri = "file://attached_assets/generated_images/qaynatma_sho_rva_uzbek_59ec.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "YihFUqjaVlaD64tS29yfR"
+uri = "file://attached_assets/generated_images/chiroqchi_salad_uzbek_fresh_e55f.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "VkaAKxuBkjFnG_SACGrZ7"
+uri = "file://attached_assets/generated_images/tomatni_assorti_uzbek_tomato_9425.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "Yai7ACkzvo1l0uC4XA0uD"
+uri = "file://attached_assets/generated_images/bahor_qatiqli_salat_uzbek_9e04.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "RaeCF6yxqamjUFVdBCehP"
+uri = "file://attached_assets/generated_images/kampot_drink_central_asian_4b6a.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "7CuokUOthTbZrgXbsgDk2"
+uri = "file://attached_assets/generated_images/o_rik_sharbati_apricot_1716.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "OzKdckC06YwB-q6C4pZDJ"
+uri = "file://attached_assets/generated_images/ayron_drink_traditional_central_1766.png"
+type = "image"
+title = "generated_image"
