@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Chorsu Osh Markazi"
+version = "1.0.0"
+id = "artifacts/chorsu"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20614
+
+[services.development]
+run = "pnpm --filter @workspace/chorsu run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/chorsu", "run", "build" ]
+publicDir = "artifacts/chorsu/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20614"
+BASE_PATH = "/"

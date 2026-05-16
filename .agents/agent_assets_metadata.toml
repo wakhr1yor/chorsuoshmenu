@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "_ey3kk5krQSQ1-UltAIxg"
+uri = "file://artifacts/chorsu/src/assets/hero.png"
+type = "image"
+title = "Uzbek plov cooking in kazan"
+
+[[generated]]
+id = "SbP9llZJvdkfKczmMxEa1"
+uri = "file://artifacts/chorsu/src/assets/fergana-osh.png"
+type = "image"
+title = "Fergana style plov"
+
+[[generated]]
+id = "LY9dxIwh7t3eU5v2BiO_J"
+uri = "file://artifacts/chorsu/src/assets/samarkand-osh.png"
+type = "image"
+title = "Samarkand style plov"
+
+[[generated]]
+id = "LgvgfJL2qHm8sVtNfX91V"
+uri = "file://artifacts/chorsu/src/assets/shurva.png"
+type = "image"
+title = "Shurva lamb soup"
+
+[[generated]]
+id = "31HHCVVodJstCDX7lAlPg"
+uri = "file://artifacts/chorsu/src/assets/mastava.png"
+type = "image"
+title = "Mastava rice soup"
+
+[[generated]]
+id = "SIipPbazc11BTEVvjnT1b"
+uri = "file://artifacts/chorsu/src/assets/achichuk-salat.png"
+type = "image"
+title = "Achichuk tomato salad"
+
+[[generated]]
+id = "rtqquF-R8ee97tsBHikex"
+uri = "file://artifacts/chorsu/src/assets/kok-salat.png"
+type = "image"
+title = "Fresh herb salad"
+
+[[generated]]
+id = "IcWQhSbf6xgBsOgRNJBNJ"
+uri = "file://artifacts/chorsu/src/assets/story-kitchen.png"
+type = "image"
+title = "Uzbek chef cooking"
+
+[[generated]]
+id = "I5NlfiTDmCIoEJHg496iF"
+uri = "file://artifacts/chorsu/src/assets/live-cooking.png"
+type = "image"
+title = "Kazan with flames"
+
+[[generated]]
+id = "O6VYN3sx36nHSDg6nlMNo"
+uri = "file://artifacts/chorsu/src/assets/gallery-interior.png"
+type = "image"
+title = "Restaurant interior"
