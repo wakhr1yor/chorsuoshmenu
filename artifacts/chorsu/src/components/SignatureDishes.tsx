@@ -6,47 +6,50 @@ import mastavaImg from "@/assets/mastava.png";
 import achichukImg from "@/assets/achichuk-salat.png";
 import kokSalatImg from "@/assets/kok-salat.png";
 import { Button } from "@/components/ui/button";
-
-const dishes = [
-  {
-    name: "Fergana Osh",
-    description: "Classic Fergana-style plov with lamb, carrots, and chickpeas.",
-    price: "65,000 so'm",
-    image: ferganaOshImg,
-  },
-  {
-    name: "Samarkand Osh",
-    description: "Samarkand-style plov with whole garlic head layered to perfection.",
-    price: "70,000 so'm",
-    image: samarkandOshImg,
-  },
-  {
-    name: "Shurva",
-    description: "Rich lamb rib soup with fresh vegetables in golden broth.",
-    price: "35,000 so'm",
-    image: shurvaImg,
-  },
-  {
-    name: "Mastava",
-    description: "Hearty Uzbek rice and vegetable soup with sour cream.",
-    price: "25,000 so'm",
-    image: mastavaImg,
-  },
-  {
-    name: "Achichuk Salat",
-    description: "Freshly sliced tomato, onion, and basil salad. Perfect with plov.",
-    price: "15,000 so'm",
-    image: achichukImg,
-  },
-  {
-    name: "Ko'k Salat",
-    description: "Crisp, vibrant green herb salad with radishes and cucumbers.",
-    price: "12,000 so'm",
-    image: kokSalatImg,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function SignatureDishes() {
+  const { t } = useTranslation();
+  
+  const dishes = [
+    {
+      name: t("menu.dishes.fergana.name"),
+      description: t("menu.dishes.fergana.description"),
+      price: t("menu.dishes.fergana.price"),
+      image: ferganaOshImg,
+    },
+    {
+      name: t("menu.dishes.samarkand.name"),
+      description: t("menu.dishes.samarkand.description"),
+      price: t("menu.dishes.samarkand.price"),
+      image: samarkandOshImg,
+    },
+    {
+      name: t("menu.dishes.shurva.name"),
+      description: t("menu.dishes.shurva.description"),
+      price: t("menu.dishes.shurva.price"),
+      image: shurvaImg,
+    },
+    {
+      name: t("menu.dishes.mastava.name"),
+      description: t("menu.dishes.mastava.description"),
+      price: t("menu.dishes.mastava.price"),
+      image: mastavaImg,
+    },
+    {
+      name: t("menu.dishes.achichuk.name"),
+      description: t("menu.dishes.achichuk.description"),
+      price: t("menu.dishes.achichuk.price"),
+      image: achichukImg,
+    },
+    {
+      name: t("menu.dishes.kok.name"),
+      description: t("menu.dishes.kok.description"),
+      price: t("menu.dishes.kok.price"),
+      image: kokSalatImg,
+    },
+  ];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -77,8 +80,8 @@ export function SignatureDishes() {
     <section id="menu" className="py-24 bg-background">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">Menu</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">Signature Dishes</h2>
+          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">{t("menu.label")}</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">{t("menu.title")}</h2>
           <div className="h-px w-24 bg-primary mx-auto opacity-30" />
         </div>
 
@@ -115,7 +118,7 @@ export function SignatureDishes() {
                   className="w-full border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-colors"
                   onClick={handleOrderClick}
                 >
-                  Order
+                  {t("menu.order")}
                 </Button>
               </div>
             </motion.div>

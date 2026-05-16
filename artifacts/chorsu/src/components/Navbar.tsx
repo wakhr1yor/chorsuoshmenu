@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function Navbar() {
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -15,11 +17,11 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Menu", href: "#menu" },
-    { name: "About", href: "#about" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Branches", href: "#branches" },
-    { name: "Reservation", href: "#reservation" },
+    { name: t("nav.menu"), href: "#menu" },
+    { name: t("nav.about"), href: "#about" },
+    { name: t("nav.gallery"), href: "#gallery" },
+    { name: t("nav.branches"), href: "#branches" },
+    { name: t("nav.reservation"), href: "#reservation" },
   ];
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -67,6 +69,22 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
+
+          <div className="flex items-center gap-1 ml-6 pl-6 border-l border-current/20">
+            {(["uz", "ru", "en"] as const).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => i18n.changeLanguage(lang)}
+                className={`font-sans text-xs font-medium uppercase tracking-wider px-2 py-1 rounded transition-colors ${
+                  i18n.language === lang
+                    ? isScrolled ? "text-primary font-bold" : "text-white font-bold"
+                    : isScrolled ? "text-foreground/50 hover:text-foreground" : "text-white/50 hover:text-white"
+                }`}
+              >
+                {lang.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Mobile Toggle */}
@@ -91,6 +109,24 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
+          <div className="flex items-center gap-2 pt-2 border-t border-border/50">
+            {(["uz", "ru", "en"] as const).map((lang) => (
+              <button
+                key={lang}
+                onClick={() => {
+                  i18n.changeLanguage(lang);
+                  setMobileMenuOpen(false);
+                }}
+                className={`font-sans text-sm font-medium uppercase tracking-wider px-3 py-2 rounded transition-colors ${
+                  i18n.language === lang
+                    ? "text-primary font-bold bg-primary/10"
+                    : "text-foreground/70 hover:text-foreground"
+                }`}
+              >
+                {lang.toUpperCase()}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </nav>

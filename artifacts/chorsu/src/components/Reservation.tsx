@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -33,6 +34,7 @@ const formSchema = z.object({
 
 export function Reservation() {
   const { toast } = useToast();
+  const { t } = useTranslation();
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -48,8 +50,8 @@ export function Reservation() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     toast({
-      title: "Reservation Confirmed",
-      description: `Thank you ${values.name}! We look forward to welcoming you on ${values.date} at ${values.time}.`,
+      title: t("reservation.success.title"),
+      description: t("reservation.success.description", { name: values.name, date: values.date, time: values.time }),
     });
     form.reset();
   }
@@ -61,14 +63,14 @@ export function Reservation() {
           
           {/* Decorative Side */}
           <div className="w-full md:w-2/5 bg-primary text-primary-foreground p-12 flex flex-col justify-center items-start">
-            <span className="font-sans text-xs font-medium uppercase tracking-widest text-primary-foreground/70 mb-2">Book a Table</span>
-            <h2 className="font-serif text-4xl font-medium mb-6">Join Our Feast</h2>
+            <span className="font-sans text-xs font-medium uppercase tracking-widest text-primary-foreground/70 mb-2">{t("reservation.label")}</span>
+            <h2 className="font-serif text-4xl font-medium mb-6">{t("reservation.title")}</h2>
             <p className="font-sans text-sm font-light text-primary-foreground/90 leading-relaxed mb-8">
-              Reserve your table for family gatherings, business lunches, or romantic dinners. For parties larger than 10, please contact us directly.
+              {t("reservation.description")}
             </p>
             <div className="space-y-4 text-sm font-sans">
-              <p><strong className="font-medium block">Working Hours:</strong> Mon-Sun: 08:00 - 22:00</p>
-              <p><strong className="font-medium block">Phone:</strong> +998 71 234 5678</p>
+              <p><strong className="font-medium block">{t("reservation.workingHours")}</strong> {t("reservation.workingHoursValue")}</p>
+              <p><strong className="font-medium block">{t("reservation.phone")}</strong> +998 71 234 5678</p>
             </div>
           </div>
 
@@ -82,9 +84,9 @@ export function Reservation() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Full Name</FormLabel>
+                        <FormLabel>{t("reservation.fields.name")}</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" className="bg-background border-input" {...field} />
+                          <Input placeholder={t("reservation.fields.namePlaceholder")} className="bg-background border-input" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -95,9 +97,9 @@ export function Reservation() {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
+                        <FormLabel>{t("reservation.fields.phone")}</FormLabel>
                         <FormControl>
-                          <Input placeholder="+998 XX XXX XX XX" type="tel" className="bg-background border-input" {...field} />
+                          <Input placeholder={t("reservation.fields.phonePlaceholder")} type="tel" className="bg-background border-input" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -111,18 +113,18 @@ export function Reservation() {
                     name="guests"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Guests</FormLabel>
+                        <FormLabel>{t("reservation.fields.guests")}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger className="bg-background border-input">
-                              <SelectValue placeholder="Select" />
+                              <SelectValue placeholder={t("reservation.fields.guestsPlaceholder")} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="1-2">1-2 People</SelectItem>
-                            <SelectItem value="3-5">3-5 People</SelectItem>
-                            <SelectItem value="6-10">6-10 People</SelectItem>
-                            <SelectItem value="10+">10+ People</SelectItem>
+                            <SelectItem value="1-2">{t("reservation.guestOptions.1-2")}</SelectItem>
+                            <SelectItem value="3-5">{t("reservation.guestOptions.3-5")}</SelectItem>
+                            <SelectItem value="6-10">{t("reservation.guestOptions.6-10")}</SelectItem>
+                            <SelectItem value="10+">{t("reservation.guestOptions.10+")}</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -134,7 +136,7 @@ export function Reservation() {
                     name="date"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Date</FormLabel>
+                        <FormLabel>{t("reservation.fields.date")}</FormLabel>
                         <FormControl>
                           <Input type="date" className="bg-background border-input" {...field} />
                         </FormControl>
@@ -147,7 +149,7 @@ export function Reservation() {
                     name="time"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Time</FormLabel>
+                        <FormLabel>{t("reservation.fields.time")}</FormLabel>
                         <FormControl>
                           <Input type="time" className="bg-background border-input" {...field} />
                         </FormControl>
@@ -162,10 +164,10 @@ export function Reservation() {
                   name="notes"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Special Requests</FormLabel>
+                      <FormLabel>{t("reservation.fields.notes")}</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Any dietary requirements or special occasions?" 
+                          placeholder={t("reservation.fields.notesPlaceholder")} 
                           className="resize-none bg-background border-input" 
                           {...field} 
                         />
@@ -176,7 +178,7 @@ export function Reservation() {
                 />
 
                 <Button type="submit" className="w-full h-12 text-base font-medium">
-                  Confirm Reservation
+                  {t("reservation.fields.submit")}
                 </Button>
               </form>
             </Form>

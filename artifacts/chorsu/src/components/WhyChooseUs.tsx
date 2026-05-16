@@ -1,40 +1,43 @@
 import { motion } from "framer-motion";
 import { Leaf, Award, Clock, Users, Flame, Utensils } from "lucide-react";
-
-const features = [
-  {
-    icon: Leaf,
-    title: "Fresh ingredients daily",
-    description: "Sourced from local bazaars every morning.",
-  },
-  {
-    icon: Award,
-    title: "100% Halal",
-    description: "Certified and strictly adhered to.",
-  },
-  {
-    icon: Flame,
-    title: "Traditional recipe since 1995",
-    description: "Passed down through generations of master oshpaz.",
-  },
-  {
-    icon: Users,
-    title: "Family-friendly atmosphere",
-    description: "Spacious seating for gatherings of all sizes.",
-  },
-  {
-    icon: Clock,
-    title: "Fast service",
-    description: "Hot, fresh plov ready when you arrive.",
-  },
-  {
-    icon: Utensils,
-    title: "Catering & events",
-    description: "We bring the feast to your special occasions.",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export function WhyChooseUs() {
+  const { t } = useTranslation();
+
+  const features = [
+    {
+      icon: Leaf,
+      title: t("why.features.fresh.title"),
+      description: t("why.features.fresh.description"),
+    },
+    {
+      icon: Award,
+      title: t("why.features.halal.title"),
+      description: t("why.features.halal.description"),
+    },
+    {
+      icon: Flame,
+      title: t("why.features.traditional.title"),
+      description: t("why.features.traditional.description"),
+    },
+    {
+      icon: Users,
+      title: t("why.features.family.title"),
+      description: t("why.features.family.description"),
+    },
+    {
+      icon: Clock,
+      title: t("why.features.fast.title"),
+      description: t("why.features.fast.description"),
+    },
+    {
+      icon: Utensils,
+      title: t("why.features.catering.title"),
+      description: t("why.features.catering.description"),
+    },
+  ];
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,8 +59,8 @@ export function WhyChooseUs() {
     <section className="py-24 bg-secondary">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">Why Choose Us</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">A Commitment to Quality</h2>
+          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">{t("why.label")}</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">{t("why.title")}</h2>
           <div className="h-px w-24 bg-primary mx-auto opacity-30" />
         </div>
 

@@ -1,0 +1,165 @@
+Build a premium, modern, multilingual restaurant website for an Uzbek pilaf center (osh markazi).
+
+The website must support 3 languages:
+1. Uzbek (default)
+2. Russian
+3. English
+
+Users must be able to instantly switch language using a professional language switcher in the top navigation bar.
+
+Use i18n best practices:
+- Dynamic translations
+- No hardcoded text
+- Easy to add more languages later
+- Persist selected language in local storage
+- Auto-detect browser language on first visit
+- SEO-friendly multilingual structure
+
+Tech stack:
+- React
+- Tailwind CSS
+- React Router
+- i18next (for multilingual support)
+- Framer Motion
+- Production-ready architecture
+
+Brand style:
+- Premium
+- Modern
+- Elegant
+- Uzbek traditional atmosphere mixed with modern luxury
+- Clean and easy to navigate
+- Mobile-first responsive design
+
+The website should feel:
+- Professional
+- Trustworthy
+- Premium
+- Family-friendly
+- Tourist-friendly
+
+Create a high-end restaurant experience similar to premium hospitality websites.
+
+Website structure:
+
+1. Sticky Navigation Bar
+Include:
+- Logo
+- Home
+- Menu
+- About Us
+- Gallery
+- Branches
+- Reservation
+- Contact
+- Language switcher (UZ | RU | EN)
+- Mobile hamburger menu
+
+2. Hero Section
+Full-width premium hero image/video of authentic Uzbek plov cooked in a kazan.
+
+Headline examples:
+UZ: "Haqiqiy O‘zbek Oshi"
+RU: "Настоящий Узбекский Плов"
+EN: "Authentic Uzbek Plov"
+
+Add:
+- Premium subtitle
+- CTA buttons:
+  View Menu
+  Find Branch
+  Book a Table
+
+3. Signature Dishes
+Beautiful food cards:
+- Plov
+- Wedding plov
+- Shashlik
+- Kazan kebab
+- Somsa
+- Salads
+Include:
+- image
+- description
+- price
+- order button
+
+4. Why Choose Us
+Feature cards:
+- Fresh daily ingredients
+- Halal food
+- Traditional recipe
+- Family atmosphere
+- Catering services
+- Fast service
+
+5. About Us
+Elegant storytelling section about:
+- tradition
+- quality
+- Uzbek hospitality
+- cooking process
+
+6. Live Cooking Experience
+Video section showing plov cooking in giant kazan.
+
+7. Gallery
+Premium responsive gallery:
+- Interior
+- Food
+- Family seating
+- VIP rooms
+
+8. Branches
+Interactive branch cards:
+- Address
+- Working hours
+- Phone
+- Google Maps integration
+
+9. Reservation Section
+Modern reservation form:
+- Name
+- Phone
+- Number of guests
+- Date
+- Time
+
+10. Testimonials
+Customer reviews with ratings.
+
+11. Contact Section
+- Telegram
+- Instagram
+- Phone number
+- Location
+- Working hours
+
+12. Footer
+Professional footer with quick links.
+
+Design system:
+- Premium typography
+- Soft shadows
+- Rounded corners
+- Elegant spacing
+- Clean layout
+- Warm neutral color palette
+- Cream + dark charcoal + warm brown accents
+- Subtle Uzbek design elements
+
+Important UX requirements:
+- Extremely easy to use
+- Mobile-first
+- Fast loading
+- SEO optimized
+- Accessible
+- Clear navigation
+- Contact information always visible
+- Menu easy to access
+
+Add smooth premium animations using Framer Motion but keep performance fast.
+
+Generate a polished, production-quality website with clean architecture and reusable components.
+
+All website content must be translated into Uzbek, Russian, and English.

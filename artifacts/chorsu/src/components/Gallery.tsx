@@ -5,23 +5,26 @@ import gallery3 from "@/assets/fergana-osh.png"; // Fallback due to limits
 import gallery4 from "@/assets/samarkand-osh.png"; // Fallback due to limits
 import gallery5 from "@/assets/live-cooking.png"; // Fallback due to limits
 import gallery6 from "@/assets/shurva.png"; // Fallback due to limits
+import { useTranslation } from "react-i18next";
 
 export function Gallery() {
+  const { t } = useTranslation();
+
   const images = [
-    { src: gallery1, alt: "Restaurant interior", className: "md:col-span-2 md:row-span-2 aspect-square md:aspect-auto" },
-    { src: gallery2, alt: "VIP room", className: "aspect-square" },
-    { src: gallery3, alt: "Family dining", className: "aspect-[4/3]" },
-    { src: gallery4, alt: "Close-up of plov", className: "aspect-[4/3]" },
-    { src: gallery5, alt: "Outdoor seating", className: "aspect-square" },
-    { src: gallery6, alt: "Festive table setting", className: "md:col-span-2 aspect-[21/9] md:aspect-auto" },
+    { src: gallery1, alt: t("gallery.alts.interior"), className: "md:col-span-2 md:row-span-2 aspect-square md:aspect-auto" },
+    { src: gallery2, alt: t("gallery.alts.vip"), className: "aspect-square" },
+    { src: gallery3, alt: t("gallery.alts.family"), className: "aspect-[4/3]" },
+    { src: gallery4, alt: t("gallery.alts.plov"), className: "aspect-[4/3]" },
+    { src: gallery5, alt: t("gallery.alts.outdoor"), className: "aspect-square" },
+    { src: gallery6, alt: t("gallery.alts.festive"), className: "md:col-span-2 aspect-[21/9] md:aspect-auto" },
   ];
 
   return (
     <section id="gallery" className="py-24 bg-background">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">Gallery</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">Atmosphere</h2>
+          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">{t("gallery.label")}</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">{t("gallery.title")}</h2>
           <div className="h-px w-24 bg-primary mx-auto opacity-30" />
         </div>
 

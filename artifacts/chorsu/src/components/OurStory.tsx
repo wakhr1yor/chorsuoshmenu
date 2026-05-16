@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import storyImg from "@/assets/story-kitchen.png";
+import { useTranslation } from "react-i18next";
 
 export function OurStory() {
+  const { t } = useTranslation();
+
   return (
     <section id="about" className="py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-4 md:px-8">
@@ -13,20 +16,20 @@ export function OurStory() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="order-2 lg:order-1"
           >
-            <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">Our Story</span>
+            <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">{t("story.label")}</span>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-8">
-              Heritage in Every Grain
+              {t("story.title")}
             </h2>
             
             <div className="space-y-6 font-sans text-lg text-muted-foreground leading-relaxed font-light">
               <p>
-                Since 1995, Chorsu Osh Markazi has served the most beloved Uzbek plov in the heart of Tashkent. 
+                {t("story.p1")}
               </p>
               <p>
-                Our master oshpaz (plov chef) follows century-old recipes passed down through generations — fresh lamb, fragrant rice, golden carrots, and the perfect blend of spices, cooked over an open wood fire in our signature cast iron kazan.
+                {t("story.p2")}
               </p>
               <p>
-                Every plate is a celebration of Uzbek hospitality. We invite you to sit at our table and experience the true taste of tradition.
+                {t("story.p3")}
               </p>
             </div>
             

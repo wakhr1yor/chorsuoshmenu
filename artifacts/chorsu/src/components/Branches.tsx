@@ -1,25 +1,28 @@
 import { motion } from "framer-motion";
 import { MapPin, Clock, Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function Branches() {
+  const { t } = useTranslation();
+
   const branches = [
     {
-      name: "Chorsu Branch",
-      address: "Chorsu Bazaar, Tashkent",
-      hours: "08:00–22:00",
-      phone: "+998 71 234 5678",
+      name: t("branches.items.chorsu.name"),
+      address: t("branches.items.chorsu.address"),
+      hours: t("branches.items.chorsu.hours"),
+      phone: t("branches.items.chorsu.phone"),
     },
     {
-      name: "Yunusobod Branch",
-      address: "Yunusobod district, Tashkent",
-      hours: "08:00–22:00",
-      phone: "+998 71 234 5679",
+      name: t("branches.items.yunusobod.name"),
+      address: t("branches.items.yunusobod.address"),
+      hours: t("branches.items.yunusobod.hours"),
+      phone: t("branches.items.yunusobod.phone"),
     },
     {
-      name: "Mirzo Ulugbek Branch",
-      address: "Mirzo Ulugbek district, Tashkent",
-      hours: "08:00–21:00",
-      phone: "+998 71 234 5680",
+      name: t("branches.items.mirzo.name"),
+      address: t("branches.items.mirzo.address"),
+      hours: t("branches.items.mirzo.hours"),
+      phone: t("branches.items.mirzo.phone"),
     },
   ];
 
@@ -27,8 +30,8 @@ export function Branches() {
     <section id="branches" className="py-24 bg-secondary">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">Locations</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">Find a Branch</h2>
+          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">{t("branches.label")}</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">{t("branches.title")}</h2>
           <div className="h-px w-24 bg-primary mx-auto opacity-30" />
         </div>
 
@@ -51,11 +54,17 @@ export function Branches() {
                 </div>
                 <div className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-primary shrink-0" />
-                  <span>{branch.hours}</span>
+                  <span>
+                    <span className="mr-1">{t("branches.hours_label")}:</span>
+                    {branch.hours}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-primary shrink-0" />
-                  <span>{branch.phone}</span>
+                  <span>
+                    <span className="mr-1">{t("branches.phone_label")}:</span>
+                    {branch.phone}
+                  </span>
                 </div>
               </div>
               
@@ -65,7 +74,7 @@ export function Branches() {
                   onClick={(e) => e.preventDefault()}
                   className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors uppercase tracking-wider"
                 >
-                  Get Directions <span className="ml-2">→</span>
+                  {t("branches.directions")} <span className="ml-2">→</span>
                 </a>
               </div>
             </motion.div>

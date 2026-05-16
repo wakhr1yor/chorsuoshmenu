@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import heroImg from "@/assets/hero.png";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export function Hero() {
+  const { t } = useTranslation();
+  
   const handleScrollTo = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     const element = document.querySelector(href);
@@ -31,16 +34,16 @@ export function Hero() {
         >
           <div className="mb-6 flex items-center justify-center gap-4 opacity-80">
             <div className="h-px w-12 bg-white/50" />
-            <span className="text-white font-sans tracking-[0.2em] text-sm uppercase">Tashkent</span>
+            <span className="text-white font-sans tracking-[0.2em] text-sm uppercase">{t("hero.location")}</span>
             <div className="h-px w-12 bg-white/50" />
           </div>
           
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-6 leading-[1.1]">
-            Authentic Uzbek Plov Experience
+            {t("hero.title")}
           </h1>
           
           <p className="font-sans text-lg md:text-xl text-white/90 mb-10 font-light max-w-2xl mx-auto leading-relaxed">
-            Crafted with tradition, served with love — since 1995.
+            {t("hero.subtitle")}
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -49,7 +52,7 @@ export function Hero() {
               className="w-full sm:w-auto text-base h-14 px-8 bg-primary hover:bg-primary/90 text-primary-foreground border-none"
               onClick={(e) => handleScrollTo(e, "#menu")}
             >
-              View Menu
+              {t("hero.viewMenu")}
             </Button>
             <Button 
               size="lg" 
@@ -57,7 +60,7 @@ export function Hero() {
               className="w-full sm:w-auto text-base h-14 px-8 text-white border-white/30 hover:bg-white hover:text-black bg-transparent transition-colors"
               onClick={(e) => handleScrollTo(e, "#branches")}
             >
-              Find a Branch
+              {t("hero.findBranch")}
             </Button>
           </div>
         </motion.div>

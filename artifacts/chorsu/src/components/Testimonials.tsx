@@ -1,29 +1,32 @@
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function Testimonials() {
+  const { t } = useTranslation();
+
   const reviews = [
     {
-      name: "Aziz T.",
+      name: t("testimonials.items.aziz.name"),
       rating: 5,
-      text: "The best plov in Tashkent, hands down. The meat is incredibly tender and the rice is perfectly cooked. My family comes here every Sunday.",
+      text: t("testimonials.items.aziz.text"),
     },
     {
-      name: "Sarah M.",
-      type: "Tourist",
+      name: t("testimonials.items.sarah.name"),
+      type: t("testimonials.tourist"),
       rating: 5,
-      text: "An unforgettable culinary experience! The atmosphere was warm and inviting, and the Samarkand Osh was spectacular. Highly recommend to any visitor.",
+      text: t("testimonials.items.sarah.text"),
     },
     {
-      name: "Dilnoza K.",
+      name: t("testimonials.items.dilnoza.name"),
       rating: 5,
-      text: "Ordered catering for my son's wedding. Everything was flawless. The guests couldn't stop praising the food. Thank you for making our day special.",
+      text: t("testimonials.items.dilnoza.text"),
     },
     {
-      name: "Marco R.",
-      type: "Tourist",
+      name: t("testimonials.items.marco.name"),
+      type: t("testimonials.tourist"),
       rating: 4,
-      text: "Very authentic and delicious. The place gets very busy during lunchtime but the service is impressively fast. The shurva is a must-try as well.",
+      text: t("testimonials.items.marco.text"),
     },
   ];
 
@@ -31,8 +34,8 @@ export function Testimonials() {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">Testimonials</span>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">Guest Experiences</h2>
+          <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">{t("testimonials.label")}</span>
+          <h2 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">{t("testimonials.title")}</h2>
           <div className="h-px w-24 bg-primary mx-auto opacity-30" />
         </div>
 

@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
 import liveCookingImg from "@/assets/live-cooking.png";
+import { useTranslation } from "react-i18next";
 
 export function LiveCooking() {
+  const { t } = useTranslation();
+
   const stats = [
-    { value: "500+", label: "kg plov daily" },
-    { value: "30+", label: "years experience" },
-    { value: "3", label: "locations" },
-    { value: "10k+", label: "happy customers" },
+    { value: "500+", label: t("cooking.stats.plov") },
+    { value: "30+", label: t("cooking.stats.experience") },
+    { value: "3", label: t("cooking.stats.locations") },
+    { value: "10k+", label: t("cooking.stats.customers") },
   ];
 
   return (
@@ -28,10 +31,10 @@ export function LiveCooking() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">The Experience</span>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium mb-6">Watch the Craft</h2>
+            <span className="font-sans text-sm font-medium uppercase tracking-widest text-primary mb-3 block">{t("cooking.label")}</span>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium mb-6">{t("cooking.title")}</h2>
             <p className="font-sans text-lg text-white/70 leading-relaxed font-light">
-              Cooking authentic plov is a performance. The fierce heat of the open wood fire, the rhythmic stirring of the massive cast iron kazan, and the precise layering of ingredients — it’s a mesmerizing process that defines our identity.
+              {t("cooking.description")}
             </p>
           </motion.div>
         </div>
